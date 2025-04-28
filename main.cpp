@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <iostream>
 #include "utilities.h"
 #include <chrono>
@@ -30,4 +31,21 @@ int main() {
     std::cout << "Checking if the stack is full: " << stacky.isFull() << std::endl;
 
     return 0;
+=======
+#include <iostream>
+#include "utilities.h"
+
+int main() {
+    
+    LinkedList list = LinkedList();
+    list.insertRight(10);
+    list.insertRight(20);
+    list.insertLeft(-10);
+    list.display();
+    list.eraseLeft();
+    list.eraseRight();
+    list.display();
+    std::cout << std::endl << list.getSize();
+    return 0;
+>>>>>>> d2e3841134cb1defd9e103e029e7f87d96285655
 }

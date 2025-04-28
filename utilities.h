@@ -147,23 +147,26 @@ public:
     void push(int data) {
         if ((stackSize + 1) <= STACK_LIMIT) {
             list.insertRight(data);
-            stackSize++;
+            stackSize = list.getSize();
         } else {
             std::cout << "Stack limit exceeded. " << std::endl;
         }
     }
 
     int top() {
-        return list.getTailData();
+        if (!list.isEmpty())
+            return list.getTailData();
+        else
+            return 0;
     }
 
     void pop() {
         list.eraseRight();
-        stackSize--;
+        stackSize = list.getSize();
     }
 
-    void isEmpty() {
-        list.isEmpty();
+    bool isEmpty() {
+        return stackSize == 0;
     }
 
     bool isFull() {
@@ -178,5 +181,43 @@ public:
             std::cout << "|" << std::setw(WIDTH) << current->data << std::setw(WIDTH-1) << "|" << std::endl;
             current = current->prev;
         }
+    }
+};
+
+class Queue {
+public:
+    LinkedList list;
+    const int QUEUE_LIMIT = 10e6;
+    int queueSize = 0;
+
+    void enqueue(int data) {
+        if ((queueSize + 1) <= QUEUE_LIMIT) {
+            list.insertRight(data);
+            queueSize = list.getSize();
+        }
+        else {
+            std::cout << "Queue limit exceeded. " << std::endl;
+        }
+    }
+
+    void dequeue(int data) {
+        list.eraseLeft();
+        queueSize = list.getSize();
+    }
+
+    int getFront() {
+        return list.getHeadData();
+    }
+
+    int getRear() {
+        return list.getTailData();
+    }
+
+    bool isFull() {
+        return queueSize == QUEUE_LIMIT;
+    }
+
+    bool isEmpty() {
+        return queueSize == 0;
     }
 };
